@@ -1,0 +1,19 @@
+# Smithery configuration file: https://smithery.ai/docs/build/project-config
+
+startCommand:
+  type: stdio
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({ command: 'python', args: ['dart.py'], env: { DART_API_KEY: config.dartApiKey } })
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - dartApiKey
+    properties:
+      dartApiKey:
+        type: string
+        description: DART OpenAPI key for authentication
+  exampleConfig:
+    dartApiKey: ABCD1234EFGH5678
